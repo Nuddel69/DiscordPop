@@ -2,6 +2,10 @@ import os
 from interactions import Client, slash_command, SlashContext, slash_option, OptionType
 from dotenv import load_dotenv
 
+@slash_command(name='hi', description="Hello!")
+async def hi(ctx: SlashContext):
+    await ctx.send("Hello World!")
+
 @slash_command(name='pop', description="Bubblewrap!")
 @slash_option(
     name="dimensions",
