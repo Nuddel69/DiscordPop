@@ -1,14 +1,6 @@
 from interactions import Client, slash_command, SlashContext, slash_option, OptionType
 import json
 
-token = json.load(open('secret.json'))["token"]
-
-bot = Client(token=token)
-
-@slash_command(name="hi", description="Greetings")
-async def hi_function(ctx: SlashContext):
-    await ctx.send("Hello World")
-
 @slash_command(name='pop', description="Bubblewrap!")
 @slash_option(
     name="dimensions",
@@ -33,4 +25,7 @@ async def bubble(ctx: SlashContext, dimensions: str):
     else:
         await ctx.send("That's too big of a bubblewrap, you wouldn't be able to pop them all!")
 
-bot.start()
+if __name__ == "__main__":
+    token = json.load(open('secret.json'))["token"]
+    bot = Client(token=token)
+    bot.start()
