@@ -1,5 +1,6 @@
+import os
 from interactions import Client, slash_command, SlashContext, slash_option, OptionType
-import json
+from dotenv import load_dotenv
 
 @slash_command(name='pop', description="Bubblewrap!")
 @slash_option(
@@ -26,6 +27,6 @@ async def bubble(ctx: SlashContext, dimensions: str):
         await ctx.send("That's too big of a bubblewrap, you wouldn't be able to pop them all!")
 
 if __name__ == "__main__":
-    token = json.load(open('secret.json'))["token"]
-    bot = Client(token=token)
+    load_dotenv()
+    bot = Client(token=os.getenv("TOKEN"))
     bot.start()
